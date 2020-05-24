@@ -6,7 +6,7 @@ class SlingShot{
             stiffness: 0.04,
             length: 10
         }
-        this.pointB = pointB
+        this.pointB = pointB;
         this.sling = Constraint.create(options);
         World.add(world, this.sling);
     }

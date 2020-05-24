@@ -3,7 +3,7 @@ const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
-var ground,stand,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,sling,seige;
+var engine,world,ground,stand,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,sling,seige;
 
 function setup() {
   createCanvas(800,400);
@@ -25,7 +25,7 @@ function setup() {
 
   stand = new Ground(650,275,150,10);
 
-  seige=Matter.Bodies.polygon(200,150,6,20,{'restitution':0.8,'friction':1.0,'density':1.0})
+  seige=Matter.Bodies.circle(200,150,20,{'restitution':0.8,'friction':1.0,'density':1.0})
   World.add(world,seige.body);
 
   sling = new SlingShot(seige.body,{x: 200 , y: 300});
@@ -39,12 +39,10 @@ function draw() {
 
   ground.display();
   stand.display();
-  seige.display();
+  var pos=seige.body.position;
+  ellipse(pos.x,pos.y,20);
   sling.display();
 
-  mousePressed();
-
-  mouseReleased();
 }
 function mousePressed() {
   Matter.Body.setPosition(seige.body,{x: mouseX , y: mouseY});
